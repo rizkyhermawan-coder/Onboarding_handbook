@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astro Onboarding Handbook</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:wght@700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -307,6 +313,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .detail-emp-role{font-size:12px;color:rgba(255,255,255,0.7);margin-top:1px}
 .detail-type-badge{display:inline-flex;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(255,255,255,0.2);color:white}
 </style>
+</head>
+<body>
 
 <!-- STEP 1: Role -->
 <div id="s1" class="screen active">
@@ -591,13 +599,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </div>
 
 <script>
-// ── PENTING: GANTI URL INI ──────────────────────────────
-// Ganti URL placeholder di bawah dengan URL Web App dari Google Apps Script Anda.
+// ── PENTING: GANTI URL INI DENGAN URL APPS SCRIPT ANDA ──────────────────────────────
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWdBcmWA2uk5-70uf5lJNBPc3a9W28MdGdb8CtSiEx4dH7qgm7eXbe9-T1OAHWnd4MOQ/exec';
 
 // Fungsi untuk mengirim data ke Google Sheet
 function sendDataToSheet(data) {
-  if (SCRIPT_URL === 'GANTI_DENGAN_URL_APPS_SCRIPT_ANDA') {
+  if (!SCRIPT_URL || SCRIPT_URL.includes('GANTI_DENGAN_URL')) {
     console.warn("Peringatan: URL Apps Script belum diatur. Data tidak dikirim.");
     return;
   }
@@ -655,7 +662,7 @@ const PHASES = {
   ]
 };
 
-// placeholder team data
+// Placeholder team data
 const TEAM = [
   {id:1,name:"Andi Pratama",email:"andi.pratama@astronauts.id",role:"Software Engineer",function:"Engineering",division:"Platform",department:"Backend",peoplePartner:"Sari Dewi",contract:"PKWTT",color:"#1A6FE8",join:"2025-06-02"},
   {id:2,name:"Budi Santoso",email:"budi.santoso@astronauts.id",role:"Product Analyst",function:"Product",division:"Growth",department:"Analytics",peoplePartner:"Rina Wijaya",contract:"PKWT",color:"#C2410C",join:"2025-06-15"},
@@ -673,7 +680,7 @@ let curEmpId=null;
 let adminMode=false;
 let rpFilter='ALL';
 
-// seed some demo checklist progress so the admin dashboard isn't empty on first load
+// Seed demo progress
 (function seedDemoProgress(){
   const seedPct={1:85,2:42,3:100,4:15,5:65,6:28};
   TEAM.forEach(emp=>{
@@ -702,8 +709,6 @@ function goS(n){
 
 function pickRole(r){
   curRole=r;
-  
-  // -- MODIFIKASI: Kirim Data Peran --
   sendDataToSheet({ event: 'Pilih Peran', role: r });
   
   if(r==='admin'){
@@ -721,6 +726,19 @@ function pickRole(r){
     document.getElementById('emp-contract-toggle').style.display='none';
     goS(2);
   }
+}
+
+function pickContract(c){
+  curContract=c;
+  sendDataToSheet({ event: 'Pilih Kontrak', role: curRole, contract: c });
+  
+  empChecks={}; empExp={};
+  document.getElementById('emp-badge-type').textContent=c;
+  document.getElementById('emp-badge-type').className='badge '+(c==='PKWTT'?'pkwtt':'pkwt');
+  applyEmpUI();
+  buildEmpTimeline();
+  goS(3);
+  showEmpPage('welcome');
 }
 
 function backFromEmployee(){
@@ -741,6 +759,7 @@ function showAdminPage(id){
   else if(id==='employee'){ enterAdminEmployee(); }
   else if(id==='manager'){ enterAdminManager(); }
 }
+
 function enterAdminEmployee(){
   if(!curContract) curContract='PKWTT';
   document.getElementById('emp-badge-type').textContent=curContract;
@@ -752,6 +771,7 @@ function enterAdminEmployee(){
   goS(3);
   showEmpPage('welcome');
 }
+
 function adminSwitchContract(c){
   if(curContract===c) return;
   curContract=c;
@@ -763,16 +783,19 @@ function adminSwitchContract(c){
   buildEmpTimeline();
   showEmpPage('welcome');
 }
+
 function updateContractToggleUI(){
   document.getElementById('ctg-pkwtt').classList.toggle('active',curContract==='PKWTT');
   document.getElementById('ctg-pkwt').classList.toggle('active',curContract==='PKWT');
 }
+
 function enterAdminManager(){
   buildMgrDashboard();
   document.getElementById('mgr-dashboard').style.display='block';
   document.getElementById('mgr-detail').classList.remove('active');
   goS(4);
 }
+
 function computeReportStats(){
   return TEAM.map(emp=>{
     const chk=mgrChecks[emp.id]||{};
@@ -786,20 +809,20 @@ function computeReportStats(){
     return {...emp,pct,status,doneItems,totalItems};
   });
 }
+
 function progressColor(pct){
   if(pct>=80) return '#15803D';
   if(pct>=50) return '#1A6FE8';
   if(pct>=25) return '#FF6B35';
   return '#DC2626';
 }
+
 function buildReport(){
   const stats=computeReportStats();
   const total=stats.length;
   const sumPct=stats.reduce((s,e)=>s+e.pct,0);
   const sumDone=stats.reduce((s,e)=>s+e.doneItems,0);
   const sumTotal=stats.reduce((s,e)=>s+e.totalItems,0);
-  const doneCount=stats.filter(e=>e.status==='done').length;
-  const activeCount=stats.filter(e=>e.status==='progress').length;
   const pkwttCount=stats.filter(e=>e.contract==='PKWTT').length;
   const pkwtCount=stats.filter(e=>e.contract==='PKWT').length;
   const avgPct=total?Math.round(sumPct/total):0;
@@ -836,12 +859,14 @@ function buildReport(){
   renderReportTable();
   buildJoinDateReport(stats);
 }
+
 function setReportFilter(f){
   rpFilter=f;
   document.querySelectorAll('.astro-fbtn').forEach(b=>b.classList.remove('active'));
   document.getElementById('rf-'+f).classList.add('active');
   renderReportTable();
 }
+
 function renderReportTable(){
   const stats=computeReportStats();
   const q=(document.getElementById('rp-search')?.value||'').trim().toLowerCase();
@@ -880,6 +905,7 @@ function renderReportTable(){
     </tr>`;
   }).join('');
 }
+
 function buildJoinDateReport(stats){
   const groups={};
   stats.forEach(e=>{
@@ -905,10 +931,12 @@ function buildJoinDateReport(stats){
     </div>`;
   }).join('');
 }
+
 function viewEmpDetailFromReport(empId){
   goS(4);
   openEmpDetail(empId);
 }
+
 function exportCSV(){
   const stats=computeReportStats();
   const headers=['Name','Email','Join Date','Function','Division','Department','Role','Contract','People Partner','Progress %','Completed Items','Total Items','Status'];
@@ -929,6 +957,7 @@ function exportCSV(){
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
 function buildPhaseBreakdown(containerId,contract){
   const phases=PHASES['mgr_'+contract];
   const emps=TEAM.filter(e=>e.contract===contract);
@@ -944,21 +973,6 @@ function buildPhaseBreakdown(containerId,contract){
     const pct=totalSum?Math.round(doneSum/totalSum*100):0;
     return `<div class="rep-mini-bar-row"><div class="rep-mini-label">${ph.e} ${ph.t}</div><div class="rep-mini-track"><div class="rep-mini-fill" style="width:${pct}%"></div></div><div class="rep-mini-pct">${pct}%</div></div>`;
   }).join('');
-}
-
-function pickContract(c){
-  curContract=c;
-  
-  // -- MODIFIKASI: Kirim Data Kontrak --
-  sendDataToSheet({ event: 'Pilih Kontrak', role: curRole, contract: c });
-  
-  empChecks={}; empExp={};
-  document.getElementById('emp-badge-type').textContent=c;
-  document.getElementById('emp-badge-type').className='badge '+(c==='PKWTT'?'pkwtt':'pkwt');
-  applyEmpUI();
-  buildEmpTimeline();
-  goS(3);
-  showEmpPage('welcome');
 }
 
 function showEmpPage(id){
@@ -992,13 +1006,13 @@ function buildEmpTimeline(){
   document.getElementById('eprog-bar').style.width=(total?Math.round(done/total*100):0)+'%';
   renderTL('etl',phases,empChecks,empExp,'toggleEmpExp','togEmpChk');
 }
+
 function toggleEmpExp(pi){empExp[pi]=!empExp[pi];buildEmpTimeline();}
 
 function togEmpChk(pi,ii){
   const k=`${pi}-${ii}`;
   empChecks[k]=!empChecks[k];
   
-  // -- MODIFIKASI: Kirim Data Checklist Karyawan --
   const phase = PHASES['emp_' + curContract][pi];
   const itemText = phase.items[ii];
   sendDataToSheet({ 
@@ -1053,6 +1067,7 @@ function buildMgrDashboard(){
   document.getElementById('st-active').textContent=inProg;
   document.getElementById('st-done').textContent=done;
 }
+
 function openEmpDetail(empId){
   curEmpId=empId;
   if(!mgrChecks[empId]) mgrChecks[empId]={};
@@ -1071,11 +1086,13 @@ function openEmpDetail(empId){
   document.getElementById('mgr-detail').classList.add('active');
   window.scrollTo({top:0});
 }
+
 function backToDashboard(){
   document.getElementById('mgr-detail').classList.remove('active');
   document.getElementById('mgr-dashboard').style.display='block';
   buildMgrDashboard();
 }
+
 function buildMgrTimeline(){
   const emp=TEAM.find(e=>e.id===curEmpId);
   const phases=PHASES['mgr_'+emp.contract];
@@ -1087,13 +1104,13 @@ function buildMgrTimeline(){
   document.getElementById('mprog-bar').style.width=(total?Math.round(done/total*100):0)+'%';
   renderTL('mtl',phases,chk,exp,'toggleMgrExp','togMgrChk');
 }
+
 function toggleMgrExp(pi){mgrExp[curEmpId][pi]=!mgrExp[curEmpId][pi];buildMgrTimeline();}
 
 function togMgrChk(pi,ii){
   const k=`${pi}-${ii}`;
   mgrChecks[curEmpId][k]=!mgrChecks[curEmpId][k];
   
-  // -- MODIFIKASI: Kirim Data Checklist Manajer --
   const emp = TEAM.find(e => e.id === curEmpId);
   const phase = PHASES['mgr_' + emp.contract][pi];
   const itemText = phase.items[ii];
@@ -1147,3 +1164,5 @@ function renderTL(containerId,phases,checks,expanded,expandFn,checkFn){
   });
 }
 </script>
+</body>
+</html>

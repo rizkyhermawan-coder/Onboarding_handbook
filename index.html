@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:wght@700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -136,7 +135,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .cc-rows{padding:0.4rem 0}
 .cc-row{padding:0.4rem 1.25rem;font-size:13px;color:var(--text2)}
 .cc-email{display:flex;align-items:center;gap:7px;padding:0.6rem 1.25rem;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--blue)}
-
 /* ── MANAGER DASHBOARD ── */
 .mgr-shell{max-width:720px;margin:0 auto;padding-bottom:4rem}
 .mgr-topbar{position:sticky;top:0;z-index:100;background:white;border-bottom:1.5px solid var(--border);padding:0.6rem 1rem;display:flex;align-items:center;gap:0.75rem}
@@ -153,7 +151,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .mgr-sec{padding:1.25rem}
 .mgr-sec+.mgr-sec{border-top:1px solid var(--border)}
 .mgr-sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:0.75rem}
-
 /* employee cards */
 .emp-card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;display:flex;align-items:center;gap:0.85rem;cursor:pointer;transition:all 0.18s;margin-bottom:0.55rem}
 .emp-card:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 2px 12px rgba(26,111,232,0.08)}
@@ -172,7 +169,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .emp-ring-fill{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 0.4s ease}
 .emp-ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:700;color:var(--blue)}
 .emp-arrow{color:var(--text3);font-size:16px}
-
 /* ── ADMIN / REPORT ── */
 :root{--violet:#6D28D9;--violet-dark:#5B21B6;--violet-deep:#4C1D95;--violet-soft:#F3EEFF;--violet-mid:#8B5CF6;}
 .ci.admin{background:#F3EEFF}
@@ -228,7 +224,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .contract-toggle{display:flex;align-items:center;gap:4px;background:var(--bg);border-radius:20px;padding:3px;margin-left:auto}
 .ctg-btn{padding:4px 11px;font-size:11px;font-weight:700;border:none;background:none;border-radius:16px;cursor:pointer;color:var(--text3);font-family:'DM Sans',sans-serif}
 .ctg-btn.active{background:white;color:var(--blue);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
-
 /* ── ASTRO ADMIN DASHBOARD (Report tab) ── */
 .astro-dash{background:var(--bg)}
 .astro-header{position:sticky;top:0;z-index:100;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.9rem;padding:0.85rem 1.25rem}
@@ -297,7 +292,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .astro-filters{justify-content:flex-start}
   .astro-jd-row{grid-template-columns:90px 1fr 70px;gap:0.6rem}
 }
-
 /* checkpoint detail view */
 .detail-view{display:none;animation:slideIn 0.25s ease}
 .detail-view.active{display:block}
@@ -331,7 +325,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
 </div>
-
 
 <!-- STEP 2: Contract (employee only) -->
 <div id="s2" class="screen">
@@ -492,7 +485,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <!-- ADMIN COMBINED VIEW -->
 <div id="s5" class="screen">
   <div class="admin-shell wide">
-
     <!-- REPORT -->
     <div id="ap-report" class="page active astro-dash">
       <div class="astro-header">
@@ -509,7 +501,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <button class="nb" onclick="showAdminPage('employee')" id="an-employee">Employee View</button>
         <button class="nb" onclick="showAdminPage('manager')" id="an-manager">Manager View</button>
       </div>
-
       <div class="astro-body">
         <!-- Stat cards -->
         <div class="astro-stats">
@@ -527,7 +518,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
             <div class="astro-stat-bar-bg"><div class="astro-stat-bar-fill" id="rp-avg-bar" style="width:0%"></div></div>
           </div>
         </div>
-
         <!-- Search + filter -->
         <div class="astro-toolbar">
           <div class="astro-search">
@@ -541,7 +531,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
             <button class="astro-fbtn" onclick="setReportFilter('PKWT')" id="rf-PKWT">PKWT <span class="cnt" id="rf-count-PKWT">0</span></button>
           </div>
         </div>
-
         <!-- Data table -->
         <div class="astro-table-card">
           <div class="astro-table-wrap">
@@ -553,7 +542,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
             </table>
           </div>
         </div>
-
         <!-- Join-date report -->
         <div style="margin-top:1.75rem">
           <div class="admin-sec-title" style="margin-bottom:0.15rem">Progress by Join Date</div>
@@ -561,7 +549,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           <div class="astro-jd-card" id="rp-joindate"></div>
         </div>
       </div>
-
       <div class="admin-sec">
         <div class="admin-sec-title">Contract Type Split</div>
         <div class="admin-sec-sub">Distribution of PKWTT vs PKWT employees currently tracked.</div>
@@ -580,13 +567,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           </div>
         </div>
       </div>
-
       <div class="admin-sec">
         <div class="admin-sec-title">Progress Leaderboard</div>
         <div class="admin-sec-sub">Checkpoint completion per employee, based on Manager tracking.</div>
         <div id="rp-bars"></div>
       </div>
-
       <div class="admin-sec">
         <div class="admin-sec-title">Phase Completion Breakdown</div>
         <div class="admin-sec-sub">Average completion at each journey phase, by contract type.</div>
@@ -602,11 +587,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
+// ── PENTING: GANTI URL INI ──────────────────────────────
+// Ganti URL placeholder di bawah dengan URL Web App dari Google Apps Script Anda.
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWdBcmWA2uk5-70uf5lJNBPc3a9W28MdGdb8CtSiEx4dH7qgm7eXbe9-T1OAHWnd4MOQ/exec';
+
+// Fungsi untuk mengirim data ke Google Sheet
+function sendDataToSheet(data) {
+  if (SCRIPT_URL === 'GANTI_DENGAN_URL_APPS_SCRIPT_ANDA') {
+    console.warn("Peringatan: URL Apps Script belum diatur. Data tidak dikirim.");
+    return;
+  }
+  
+  const dataWithTimestamp = { ...data, timestamp: new Date().toISOString() };
+  
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(dataWithTimestamp),
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'no-cors'
+  })
+  .then(response => console.log('Data sukses dikirim (background)'))
+  .catch(error => console.error('Error saat mengirim data:', error.message));
+}
+
 // ── DATA ──────────────────────────────────────────────────
 const PHASES = {
   emp_PKWTT:[
@@ -695,6 +702,10 @@ function goS(n){
 
 function pickRole(r){
   curRole=r;
+  
+  // -- MODIFIKASI: Kirim Data Peran --
+  sendDataToSheet({ event: 'Pilih Peran', role: r });
+  
   if(r==='admin'){
     adminMode=true;
     document.getElementById('emp-contract-toggle').style.display='none';
@@ -716,6 +727,7 @@ function backFromEmployee(){
   if(adminMode){ goS(5); showAdminPage('report'); }
   else { goS(1); }
 }
+
 function backFromManager(){
   if(adminMode){ goS(5); showAdminPage('report'); }
   else { goS(1); }
@@ -729,7 +741,6 @@ function showAdminPage(id){
   else if(id==='employee'){ enterAdminEmployee(); }
   else if(id==='manager'){ enterAdminManager(); }
 }
-
 function enterAdminEmployee(){
   if(!curContract) curContract='PKWTT';
   document.getElementById('emp-badge-type').textContent=curContract;
@@ -741,7 +752,6 @@ function enterAdminEmployee(){
   goS(3);
   showEmpPage('welcome');
 }
-
 function adminSwitchContract(c){
   if(curContract===c) return;
   curContract=c;
@@ -753,19 +763,16 @@ function adminSwitchContract(c){
   buildEmpTimeline();
   showEmpPage('welcome');
 }
-
 function updateContractToggleUI(){
   document.getElementById('ctg-pkwtt').classList.toggle('active',curContract==='PKWTT');
   document.getElementById('ctg-pkwt').classList.toggle('active',curContract==='PKWT');
 }
-
 function enterAdminManager(){
   buildMgrDashboard();
   document.getElementById('mgr-dashboard').style.display='block';
   document.getElementById('mgr-detail').classList.remove('active');
   goS(4);
 }
-
 function computeReportStats(){
   return TEAM.map(emp=>{
     const chk=mgrChecks[emp.id]||{};
@@ -779,14 +786,12 @@ function computeReportStats(){
     return {...emp,pct,status,doneItems,totalItems};
   });
 }
-
 function progressColor(pct){
   if(pct>=80) return '#15803D';
   if(pct>=50) return '#1A6FE8';
   if(pct>=25) return '#FF6B35';
   return '#DC2626';
 }
-
 function buildReport(){
   const stats=computeReportStats();
   const total=stats.length;
@@ -798,19 +803,15 @@ function buildReport(){
   const pkwttCount=stats.filter(e=>e.contract==='PKWTT').length;
   const pkwtCount=stats.filter(e=>e.contract==='PKWT').length;
   const avgPct=total?Math.round(sumPct/total):0;
-
-  // stat cards
+  
   document.getElementById('rp-total').textContent=total;
   document.getElementById('rp-done-items').textContent=sumDone;
   document.getElementById('rp-total-items').textContent=sumTotal;
   document.getElementById('rp-avg').textContent=avgPct+'%';
   document.getElementById('rp-avg-bar').style.width=avgPct+'%';
-
-  // filter button counts
   document.getElementById('rf-count-PKWTT').textContent=pkwttCount;
   document.getElementById('rf-count-PKWT').textContent=pkwtCount;
-
-  // contract split donut
+  
   const c=2*Math.PI*15.5;
   const pkwttLen=c*(total?pkwttCount/total:0);
   const pkwtLen=c*(total?pkwtCount/total:0);
@@ -822,29 +823,25 @@ function buildReport(){
   document.getElementById('rp-donut-total').textContent=total;
   document.getElementById('rp-pkwtt-count').textContent=pkwttCount;
   document.getElementById('rp-pkwt-count').textContent=pkwtCount;
-
-  // leaderboard
+  
   const sorted=[...stats].sort((a,b)=>b.pct-a.pct);
   document.getElementById('rp-bars').innerHTML=sorted.map(e=>`
     <div class="rep-bar-item">
       <div class="rep-bar-hd"><span class="rep-bar-name">${e.name} <span style="color:var(--text3);font-weight:500">· ${e.role}</span></span><span class="rep-bar-pct">${e.pct}%</span></div>
       <div class="rep-bar-bg"><div class="rep-bar-fill" style="width:${e.pct}%"></div></div>
     </div>`).join('');
-
+    
   buildPhaseBreakdown('rp-phase-pkwtt','PKWTT');
   buildPhaseBreakdown('rp-phase-pkwt','PKWT');
-
   renderReportTable();
   buildJoinDateReport(stats);
 }
-
 function setReportFilter(f){
   rpFilter=f;
   document.querySelectorAll('.astro-fbtn').forEach(b=>b.classList.remove('active'));
   document.getElementById('rf-'+f).classList.add('active');
   renderReportTable();
 }
-
 function renderReportTable(){
   const stats=computeReportStats();
   const q=(document.getElementById('rp-search')?.value||'').trim().toLowerCase();
@@ -883,7 +880,6 @@ function renderReportTable(){
     </tr>`;
   }).join('');
 }
-
 function buildJoinDateReport(stats){
   const groups={};
   stats.forEach(e=>{
@@ -909,12 +905,10 @@ function buildJoinDateReport(stats){
     </div>`;
   }).join('');
 }
-
 function viewEmpDetailFromReport(empId){
   goS(4);
   openEmpDetail(empId);
 }
-
 function exportCSV(){
   const stats=computeReportStats();
   const headers=['Name','Email','Join Date','Function','Division','Department','Role','Contract','People Partner','Progress %','Completed Items','Total Items','Status'];
@@ -935,7 +929,6 @@ function exportCSV(){
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
-
 function buildPhaseBreakdown(containerId,contract){
   const phases=PHASES['mgr_'+contract];
   const emps=TEAM.filter(e=>e.contract===contract);
@@ -955,6 +948,10 @@ function buildPhaseBreakdown(containerId,contract){
 
 function pickContract(c){
   curContract=c;
+  
+  // -- MODIFIKASI: Kirim Data Kontrak --
+  sendDataToSheet({ event: 'Pilih Kontrak', role: curRole, contract: c });
+  
   empChecks={}; empExp={};
   document.getElementById('emp-badge-type').textContent=c;
   document.getElementById('emp-badge-type').className='badge '+(c==='PKWTT'?'pkwtt':'pkwt');
@@ -996,7 +993,24 @@ function buildEmpTimeline(){
   renderTL('etl',phases,empChecks,empExp,'toggleEmpExp','togEmpChk');
 }
 function toggleEmpExp(pi){empExp[pi]=!empExp[pi];buildEmpTimeline();}
-function togEmpChk(pi,ii){const k=`${pi}-${ii}`;empChecks[k]=!empChecks[k];buildEmpTimeline();}
+
+function togEmpChk(pi,ii){
+  const k=`${pi}-${ii}`;
+  empChecks[k]=!empChecks[k];
+  
+  // -- MODIFIKASI: Kirim Data Checklist Karyawan --
+  const phase = PHASES['emp_' + curContract][pi];
+  const itemText = phase.items[ii];
+  sendDataToSheet({ 
+    event: 'Checklist Employee', 
+    role: 'employee', 
+    contract: curContract, 
+    item: itemText, 
+    status: empChecks[k] ? 'completed' : 'uncompleted' 
+  });
+  
+  buildEmpTimeline();
+}
 
 // ── MANAGER DASHBOARD ─────────────────────────────────────
 function buildMgrDashboard(){
@@ -1039,7 +1053,6 @@ function buildMgrDashboard(){
   document.getElementById('st-active').textContent=inProg;
   document.getElementById('st-done').textContent=done;
 }
-
 function openEmpDetail(empId){
   curEmpId=empId;
   if(!mgrChecks[empId]) mgrChecks[empId]={};
@@ -1058,13 +1071,11 @@ function openEmpDetail(empId){
   document.getElementById('mgr-detail').classList.add('active');
   window.scrollTo({top:0});
 }
-
 function backToDashboard(){
   document.getElementById('mgr-detail').classList.remove('active');
   document.getElementById('mgr-dashboard').style.display='block';
   buildMgrDashboard();
 }
-
 function buildMgrTimeline(){
   const emp=TEAM.find(e=>e.id===curEmpId);
   const phases=PHASES['mgr_'+emp.contract];
@@ -1077,7 +1088,28 @@ function buildMgrTimeline(){
   renderTL('mtl',phases,chk,exp,'toggleMgrExp','togMgrChk');
 }
 function toggleMgrExp(pi){mgrExp[curEmpId][pi]=!mgrExp[curEmpId][pi];buildMgrTimeline();}
-function togMgrChk(pi,ii){const k=`${pi}-${ii}`;mgrChecks[curEmpId][k]=!mgrChecks[curEmpId][k];buildMgrTimeline();}
+
+function togMgrChk(pi,ii){
+  const k=`${pi}-${ii}`;
+  mgrChecks[curEmpId][k]=!mgrChecks[curEmpId][k];
+  
+  // -- MODIFIKASI: Kirim Data Checklist Manajer --
+  const emp = TEAM.find(e => e.id === curEmpId);
+  const phase = PHASES['mgr_' + emp.contract][pi];
+  const itemText = phase.items[ii];
+  
+  sendDataToSheet({ 
+    event: 'Checklist Manager', 
+    role: 'manager',
+    employee_name: emp.name,
+    employee_id: emp.id,
+    contract: emp.contract,
+    item: itemText, 
+    status: mgrChecks[curEmpId][k] ? 'completed' : 'uncompleted' 
+  });
+  
+  buildMgrTimeline();
+}
 
 // ── SHARED TIMELINE RENDERER ──────────────────────────────
 function renderTL(containerId,phases,checks,expanded,expandFn,checkFn){
